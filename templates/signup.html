@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<main class="container mt-4">
+    <section class="signup-section">
+        {% if user_form.errors or profile_form.errors %}
+        <div class="alert alert-danger">
+          <strong>Please fix the following errors:</strong>
+          <ul>
+            {% for field in user_form %}
+              {% for error in field.errors %}
+                <li>{{ field.label }}: {{ error }}</li>
+              {% endfor %}
+            {% endfor %}
+            {% for error in user_form.non_field_errors %}
+              <li>{{ error }}</li>
+            {% endfor %}
+            {% for field in profile_form %}
+              {% for error in field.errors %}
+                <li>{{ field.label }}: {{ error }}</li>
+              {% endfor %}
+            {% endfor %}
+            {% for error in profile_form.non_field_errors %}
+              <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+        
+
+        <form action="{% url 'signup' %}" method="post" class="row g-3 needs-validation">
+            {% csrf_token %}
+            <h2 class="text-center">Create Your Account</h2>
+            <div class="col-12">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" id="username" name="username" class="form-control" placeholder="Enter your username"
+                    required pattern="^[a-zA-Z0-9]{5,}$" />
+                <div class="invalid-feedback">Username must be at least 5 characters long and contain only letters and
+                    numbers.</div>
+            </div>
+            <div class="col-md-6">
+                <label for="firstname" class="form-label">First Name</label>
+                <input type="text" id="firstname" name="first_name" class="form-control" placeholder="First name"
+                    required pattern="^[a-zA-Z]+$" />
+                <div class="invalid-feedback">Please enter a valid first name (only letters allowed).</div>
+            </div>
+            <div class="col-md-6">
+                <label for="lastname" class="form-label">Last Name</label>
+                <input type="text" id="lastname" name="last_name" class="form-control" placeholder="Last name" required
+                    pattern="^[a-zA-Z]+$" />
+                <div class="invalid-feedback">Please enter a valid last name (only letters allowed).</div>
+            </div>
+            <div class="col-12">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" id="email" name="email" class="form-control" placeholder="you@example.com"
+                    required />
+                <div class="invalid-feedback">Please enter a valid email address.</div>
+            </div>
+            <div class="col-12">
+                <label for="password1" class="form-label">Password</label>
+                <input type="password" id="password1" name="password1" class="form-control"
+                    placeholder="Enter a strong password" required minlength="8" />
+                <div class="invalid-feedback">Password must be at least 8 characters long.</div>
+            </div>
+            <div class="col-12">
+                <label for="password2" class="form-label">Confirm Password</label>
+                <input type="password" id="password2" name="password2" class="form-control"
+                    placeholder="Confirm your password" required />
+                <div class="invalid-feedback">Please confirm your password.</div>
+            </div>
+            <fieldset class="col-12">
+                <legend>Preferences</legend>
+                <div class="form-check">
+                    <input type="checkbox" id="action" name="preference" value="Action" class="form-check-input" />
+                    <label for="action" class="form-check-label">Action</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" id="adventure" name="preference" value="Adventure"
+                        class="form-check-input" />
+                    <label for="adventure" class="form-check-label">Adventure</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" id="racing" name="preference" value="Racing" class="form-check-input" />
+                    <label for="racing" class="form-check-label">Racing</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" id="sports" name="preference" value="Sports" class="form-check-input" />
+                    <label for="sports" class="form-check-label">Sports</label>
+                </div>
+                <div class="invalid-feedback">Please select at least one preference.</div>
+            </fieldset>
+            <fieldset class="col-12">
+                <legend>User Type</legend>
+                <div class="form-check">
+                    <input type="radio" id="user" name="user_type" value="user" class="form-check-input" required />
+                    <label for="user" class="form-check-label">User</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" id="developer" name="user_type" value="developer" class="form-check-input"
+                        required />
+                    <label for="developer" class="form-check-label">Developer</label>
+                </div>
+                <div class="invalid-feedback">Please select a user type.</div>
+            </fieldset>
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary w-100">Sign Up</button>
+            </div>
+        </form>
+    </section>
+</main>
+{% endblock %}

@@ -3,26 +3,26 @@ from django.contrib.auth.models import User
 from django.contrib.postgres.fields import ArrayField  # For PostgreSQL
 
 class Profile(models.Model):
+    USER_TYPES = [
+        ('user', 'Normal User'),
+        ('developer', 'Developer'),
+    ]
+
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    preferences = ArrayField(models.CharField(max_length=100), blank=True, default=list)  # Preferred categories
-    wishlist = models.ManyToManyField('Game', blank=True)
-    bio = models.TextField(blank=True)
-    profile_pic = models.ImageField(upload_to="profiles/", blank=True)
+    user_type = models.CharField(max_length=10, choices=USER_TYPES, default='normal')  # Identifies user type
+    preferences = models.JSONField(blank=True, default=list)  # Stores user's preferred categories
+
+    def is_developer(self):
+        return self.user_type == 'developer'  # Helper method to check if the user is a developer
 
     def __str__(self):
-        return self.user.username
-
-class DeveloperProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.user.username
+        return f"{self.user.username}'s Profile"
 
 class Game(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField()
     category = models.CharField(max_length=100)  # Storing category as text
-    developer = models.ForeignKey(DeveloperProfile, on_delete=models.CASCADE)
+    developer = models.ForeignKey(User, on_delete=models.CASCADE, related_name="developed_games")  # Now links directly to User model
     image_url = models.URLField(blank=True)
 
     def __str__(self):
