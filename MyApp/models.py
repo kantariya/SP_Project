@@ -39,10 +39,12 @@ class Review(models.Model):
         return f"{self.user.username} - {self.game.title} ({self.rating})"
 
 class GameAnalytics(models.Model):
-    game = models.OneToOneField(Game, on_delete=models.CASCADE)
+    game = models.OneToOneField('Game', on_delete=models.CASCADE)
     total_downloads = models.IntegerField(default=0)
     system_requirements = models.TextField()
+    size = models.TextField(blank=True, help_text="Enter game size (e.g., '500 MB' or '2.5 GB')")  # Updated to TextField
     last_updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return f"Analytics for {self.game.title}"
+

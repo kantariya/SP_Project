@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="card shadow-lg">
+    <img src="{% static 'img/demo.jpeg' %}" alt="{{ game.title }}" class="card-img-top" style="max-height: 400px; object-fit: cover; border-top-left-radius: 20px; border-top-right-radius: 20px;">
+    <div class="card-body">
+      <h1 class="card-title text-center">{{ game.title }}</h1>
+      <p class="card-text">{{ game.description }}</p>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item"><strong>Category:</strong> {{ game.category }}</li>
+        <li class="list-group-item"><strong>Total Downloads:</strong> {{ analytics.total_downloads }}</li>
+        <li class="list-group-item"><strong>Size:</strong> {{ analytics.size }}</li>
+        <li class="list-group-item"><strong>System Requirements:</strong> {{ analytics.system_requirements }}</li>
+      </ul>
+    </div>
+  </div>
+</div>
+{% endblock %}
