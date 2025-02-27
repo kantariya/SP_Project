@@ -33,18 +33,21 @@ class ProfileForm(forms.ModelForm):
         model = Profile
         fields = ['user_type', 'preferences']
 
-# Game Form for developers to create or edit games
+
+CATEGORY_CHOICES = [
+    ('Sports', 'Sports'),
+    ('Racing', 'Racing'),
+    ('Adventure', 'Adventure'),
+    ('Action', 'Action'),
+]
+
 class GameForm(forms.ModelForm):
+    category = forms.ChoiceField(choices=CATEGORY_CHOICES, widget=forms.Select())
+    size = forms.CharField(required=True, widget=forms.TextInput(attrs={'placeholder': 'Enter size like 2GB or 500MB'}))
+
     class Meta:
         model = Game
         fields = ['title', 'description', 'category', 'image_url']
-
-    def save(self, commit=True):
-        game = super().save(commit=False)
-        if commit:
-            game.developer = self.instance.user
-            game.save()
-        return game
 
 # Review Form for users to leave a review and rating for a game
 class ReviewForm(forms.ModelForm):

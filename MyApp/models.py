@@ -6,7 +6,7 @@ class Profile(models.Model):
     USER_TYPES = [
         ('user', 'Normal User'),
         ('developer', 'Developer'),
-    ]
+    ]   
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     user_type = models.CharField(max_length=10, choices=USER_TYPES, default='normal')  # Identifies user type

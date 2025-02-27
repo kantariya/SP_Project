@@ -1,21 +1,26 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load custom_filters %}
 
-{% block content %} 
+{% block content %}
 {% for category, games in games_by_category.items %}
 <section class="category" id="{{ category|slugify }}-games">
     <h2>{{ category }} Games</h2>
     <div class="game-list">
         {% for game in games %}
         <div class="game-card">
-            <img src="{% static 'img/demo.jpeg' %}" alt="{{ game.title }}">
+
+            <img src="{{ game.image_url|default:'/static/img/demo.jpeg' }}" alt="{{ game.title }}">
             <div class="game-info">
                 <h3>{{ game.title }}</h3>
-                <p>Downloads: {{ game.analytics.total_downloads|default:"N/A" }}</p>
+                <p>Downloads: {{ game.analytics.total_downloads|humanize_downloads|default:"N/A" }}</p>
                 <p>Size: {{ game.analytics.size|default:"N/A" }}</p>
-                <button class="block mt-4 text-center bg-blue-500 text-white py-2 rounded-2xl"><a href="{% url 'game_detail' game.id %}" >View Details</a></button>
+                <a href="{% url 'game_detail' game.id %}" class="btn btn-primary w-100 mt-4 rounded-pill py-2">
+                    View Details
+                </a>
+
             </div>
-            
+
         </div>
         {% empty %}
         <p>No games available in this category yet.</p>

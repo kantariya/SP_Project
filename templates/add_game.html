@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white text-center">
+          <h4>Add a New Game</h4>
+        </div>
+        <div class="card-body">
+          <form method="post">
+            {% csrf_token %}
+
+            <div class="mb-3">
+              {{ form.title|as_crispy_field }}
+            </div>
+
+            <div class="mb-3">
+              {{ form.description|as_crispy_field }}
+            </div>
+
+            <div class="mb-3">
+              <label for="id_category" class="form-label">Category</label>
+              <select class="form-select" id="id_category" name="category">
+                <option value="">Select a Category</option>
+                <option value="Sports">Sports</option>
+                <option value="Racing">Racing</option>
+                <option value="Adventure">Adventure</option>
+                <option value="Action">Action</option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              {{ form.image_url|as_crispy_field }}
+            </div>
+
+            <div class="mb-3">
+              <label for="id_total_downloads" class="form-label">Total Downloads</label>
+              <input type="number" class="form-control" id="id_total_downloads" name="total_downloads" value="0" min="0">
+            </div>
+
+            <div class="mb-3">
+              <label for="id_size" class="form-label">Size</label>
+              <input type="text" class="form-control" id="id_size" name="size" placeholder="Enter size like 2GB or 500MB">
+            </div>
+
+            <div class="mb-3">
+              <label for="id_system_requirements" class="form-label">System Requirements</label>
+              <textarea class="form-control" id="id_system_requirements" name="system_requirements" rows="3"></textarea>
+            </div>
+
+            <div class="text-center">
+              <button type="submit" class="btn btn-success">Add Game</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
