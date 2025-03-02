@@ -10,4 +10,7 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(next_page='/'), name='logout'),
     path('add-game/', views.add_game, name='add_game'),
     path('category/<str:category>/', views.category_games, name='category_games'),
+    path('game/<int:game_id>/add_review/', views.add_review, name='add_review'),
+    path('review/delete/<int:review_id>/', views.delete_review, name='delete_review'),
+    path('review/update/<int:review_id>/', views.update_review, name='update_review'),
 ]

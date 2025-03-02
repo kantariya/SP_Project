@@ -17,5 +17,40 @@
       </ul>
     </div>
   </div>
+
+  <div class="reviews mt-5">
+    <h3>Reviews</h3>
+    {% for review in reviews %}
+      <div class="card mb-3">
+        <div class="card-body">
+          <h5 class="card-title fw-bold">@{{ review.user.username }}</h5>
+          <br>
+          <p class="card-text">Rating : {{ review.rating }}/5</p>
+          <p class="card-text">{{ review.comment }}</p>
+          <p class="text-muted">{{ review.created_at }}</p>
+          {% if user == review.user %}
+            <a href="{% url 'update_review' review.id %}" class="btn btn-warning btn-sm">Update</a>
+            <form action="{% url 'delete_review' review.id %}" method="post" class="d-inline">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+            </form>
+          {% endif %}
+        </div>
+      </div>
+    {% empty %}
+      <p>No reviews yet. Be the first to review!</p>
+    {% endfor %}
+  </div>
+
+  {% if user.is_authenticated %}
+    <div class="review-form mt-5">
+      <h3>Submit a Review</h3>
+      <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Submit Review</button>
+      </form>
+    </div>
+  {% endif %}
 </div>
 {% endblock %}

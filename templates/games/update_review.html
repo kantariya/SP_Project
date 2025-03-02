@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5">
+  <h2 class="text-center">Update Review</h2>
+  <form method="post" class="card p-4 shadow-sm">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label for="id_rating" class="form-label">Rating (1-5)</label>
+      {{ form.rating }}
+    </div>
+    <div class="mb-3">
+      <label for="id_comment" class="form-label">Comment</label>
+      <input type="text" name="comment" id="id_comment" class="form-control" value="{{ form.comment.value|default:'' }}">
+    </div>
+    <button type="submit" class="btn btn-primary">Update Review</button>
+  </form>
+</div>
+{% endblock %}

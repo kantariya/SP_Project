@@ -7,6 +7,7 @@ from django.db import transaction
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
+from .models import Review  
 
 
 from django.shortcuts import render, redirect
@@ -17,6 +18,7 @@ from django.shortcuts import render, redirect
 from .forms import UserSignupForm, ProfileForm
 from .models import Game,GameAnalytics
 from .forms import GameForm, GameAnalyticsForm
+from .forms import ReviewForm
 
 
 
@@ -76,10 +78,69 @@ def home(request):
     return render(request, 'home.html', {'games_by_category': games_by_category})
 
 
+# Game detail view with reviews
 def game_detail(request, game_id):
     game = get_object_or_404(Game, id=game_id)
-    analytics = get_object_or_404(GameAnalytics, game=game)
-    return render(request, 'game_detail.html', {'game': game, 'analytics': analytics})
+    analytics = GameAnalytics.objects.get(game=game)
+    reviews = game.reviews.all()  # <- Make sure you're passing reviews!
+    
+    if request.method == "POST":
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            review = form.save(commit=False)
+            review.game = game
+            review.user = request.user
+            review.save()
+            return redirect('game_detail', game_id=game.id)
+    else:
+        form = ReviewForm()
+
+    return render(request, 'game_detail.html', {
+        'game': game,
+        'analytics': analytics,
+        'reviews': reviews,  # <- Don't forget this!
+        'form': form
+    })
+
+
+# Add review view
+@login_required
+def add_review(request, game_id):
+    game = get_object_or_404(Game, id=game_id)
+    if request.method == 'POST':
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            review = form.save(commit=False)
+            review.user = request.user
+            review.game = game
+            review.save()
+            return redirect('game_detail', game_id=game.id)
+    return redirect('game_detail', game_id=game.id)
+
+# Delete review view
+@login_required
+def delete_review(request, review_id):
+    review = get_object_or_404(Review, id=review_id)
+    if review.user == request.user:
+        review.delete()
+    return redirect('game_detail', game_id=review.game.id)
+
+@login_required
+def update_review(request, review_id):
+    review = get_object_or_404(Review, id=review_id)
+
+    if request.user != review.user:
+        return redirect('game_detail', game_id=review.game.id)
+
+    if request.method == 'POST':
+        form = ReviewForm(request.POST, instance=review)
+        if form.is_valid():
+            form.save()
+            return redirect('game_detail', game_id=review.game.id)
+    else:
+        form = ReviewForm(instance=review)
+
+    return render(request, 'games/update_review.html', {'form': form, 'review': review})
 
 @login_required
 def add_game(request):
