@@ -13,4 +13,7 @@ urlpatterns = [
     path('game/<int:game_id>/add_review/', views.add_review, name='add_review'),
     path('review/delete/<int:review_id>/', views.delete_review, name='delete_review'),
     path('review/update/<int:review_id>/', views.update_review, name='update_review'),
+    path('my-games/', views.my_games, name='my_games'),
+    path('game/<int:pk>/update/', views.update_game, name='update_game'),
+    path('game/<int:pk>/delete/', views.delete_game, name='delete_game'),
 ]

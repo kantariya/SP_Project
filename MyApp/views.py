@@ -191,3 +191,46 @@ def racing_games(request):
 
 def sports_games(request):
     return category_games(request, 'Sports')
+
+
+@login_required
+def my_games(request):
+    if not request.user.profile.is_developer():
+        return redirect('home')
+    games = Game.objects.filter(developer=request.user)
+    return render(request, 'myapp/my_games.html', {'games': games})
+    
+@login_required
+def update_game(request, game_id):
+    game = get_object_or_404(Game, id=game_id)
+
+    # Make sure only the game's developer can update it
+    if request.user != game.developer:
+        raise PermissionDenied()
+
+    # Get the related analytics or create if missing
+    analytics, created = GameAnalytics.objects.get_or_create(game=game)
+
+    if request.method == 'POST':
+        form = GameUpdateForm(request.POST, instance=game)
+        if form.is_valid():
+            game = form.save()
+
+            # Update size in GameAnalytics
+            analytics.size = form.cleaned_data['size']
+            analytics.save()
+
+            return redirect('game_detail', game_id=game.id)
+    else:
+        # Pre-fill size from GameAnalytics
+        form = GameUpdateForm(instance=game, initial={'size': analytics.size})
+
+    return render(request, 'games/update_game.html', {'form': form, 'game': game})
+
+@login_required
+def delete_game(request, game_id):
+    game = get_object_or_404(Game, id=game_id, developer=request.user)
+    if request.method == 'POST':
+        game.delete()
+        return redirect('my_games')
+    return render(request, 'myapp/delete_game.html', {'game': game})

@@ -84,3 +84,27 @@ class GameAdminForm(forms.ModelForm):
 class GameAdmin(admin.ModelAdmin):
     form = GameAdminForm
     list_display = ('title', 'developer', 'category', 'image_url')
+
+class GameUpdateForm(GameForm):
+    def __init__(self, *args, **kwargs):
+        game = kwargs.get('instance')
+        if game:
+            try:
+                game_analytics = GameAnalytics.objects.get(game=game)
+                initial_size = game_analytics.size
+            except GameAnalytics.DoesNotExist:
+                initial_size = ''
+            if 'initial' not in kwargs:
+                kwargs['initial'] = {}
+            kwargs['initial']['size'] = initial_size
+        super().__init__(*args, **kwargs)
+
+    def save(self, commit=True):
+        game = super().save(commit=commit)
+        size = self.cleaned_data.get('size')
+
+        game_analytics, created = GameAnalytics.objects.get_or_create(game=game)
+        game_analytics.size = size
+        if commit:
+            game_analytics.save()
+        return game

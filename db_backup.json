@@ -1,0 +1,648 @@
+[
+{
+  "model": "admin.logentry",
+  "pk": 1,
+  "fields": {
+    "action_time": "2025-02-24T14:07:04.060Z",
+    "user": 2,
+    "content_type": 4,
+    "object_id": "3",
+    "object_repr": "hello",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 2,
+  "fields": {
+    "action_time": "2025-02-27T13:59:16.255Z",
+    "user": 2,
+    "content_type": 8,
+    "object_id": "12",
+    "object_repr": "Hoop Heroes",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Image url\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 3,
+  "fields": {
+    "action_time": "2025-02-27T13:59:22.528Z",
+    "user": 2,
+    "content_type": 8,
+    "object_id": "11",
+    "object_repr": "Pro Soccer 2024",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Image url\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 4,
+  "fields": {
+    "action_time": "2025-02-27T13:59:28.848Z",
+    "user": 2,
+    "content_type": 8,
+    "object_id": "10",
+    "object_repr": "Highway Madness",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Image url\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 5,
+  "fields": {
+    "action_time": "2025-02-27T13:59:34.492Z",
+    "user": 2,
+    "content_type": 8,
+    "object_id": "9",
+    "object_repr": "Speed Thrills",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Image url\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 6,
+  "fields": {
+    "action_time": "2025-02-27T13:59:40.687Z",
+    "user": 2,
+    "content_type": 8,
+    "object_id": "8",
+    "object_repr": "Mystic Escape",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Image url\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 7,
+  "fields": {
+    "action_time": "2025-02-27T13:59:46.760Z",
+    "user": 2,
+    "content_type": 8,
+    "object_id": "7",
+    "object_repr": "Quest Chronicles",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Image url\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 8,
+  "fields": {
+    "action_time": "2025-02-27T14:00:00.741Z",
+    "user": 2,
+    "content_type": 8,
+    "object_id": "6",
+    "object_repr": "Blade Fury",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Image url\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 9,
+  "fields": {
+    "action_time": "2025-02-27T14:00:06.601Z",
+    "user": 2,
+    "content_type": 8,
+    "object_id": "5",
+    "object_repr": "Shadow Strikers",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Image url\"]}}]"
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$870000$L8JWzT5GXfq8yCQISbRaxY$tnlhcwiuk7FuiPhkDpIS4XtdVLzs2lEk51f7s94YcPQ=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "kishan",
+    "first_name": "",
+    "last_name": "",
+    "email": "you@example.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-02-24T13:51:44.903Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$870000$dJXXIuIkhVPYZrRqzyNu7S$2EY7HJbqwb4AlMEsZ4Ss7EdbFkl6JCxb6xcOV/TjHvc=",
+    "last_login": "2025-03-05T16:13:22.857Z",
+    "is_superuser": true,
+    "username": "admin",
+    "first_name": "",
+    "last_name": "",
+    "email": "23ceuos069@ddu.ac.in",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2025-02-24T13:57:24.587Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 4,
+  "fields": {
+    "password": "pbkdf2_sha256$870000$OaEonxVGBgM2B43dko27BP$q67U1KHiyWi9QOA2kx8qDX0tgx+5nQwN61U1NMrRoKw=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "hello",
+    "first_name": "hi",
+    "last_name": "hello",
+    "email": "hello@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-02-24T14:21:23.342Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 5,
+  "fields": {
+    "password": "password123",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "dev_user",
+    "first_name": "",
+    "last_name": "",
+    "email": "dev@example.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-02-25T12:53:40.322Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 6,
+  "fields": {
+    "password": "pbkdf2_sha256$870000$EFzq9anV6PMp0zDwUXHHKO$9OKNBGrCeYhjTvN80QjH4+1JiwaHEJ+cjOiDSyr2NLQ=",
+    "last_login": "2025-03-03T17:05:25.903Z",
+    "is_superuser": false,
+    "username": "developer",
+    "first_name": "iam",
+    "last_name": "developer",
+    "email": "developer@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-02-27T09:18:46.392Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 7,
+  "fields": {
+    "password": "pbkdf2_sha256$870000$m4amJzE8T8Krzk2v9hwwz7$r8XV1uI6Pe9+WHKkiljeygJs8t7y6kFwGL8j9bzKFW8=",
+    "last_login": "2025-03-02T13:54:10.381Z",
+    "is_superuser": false,
+    "username": "normal",
+    "first_name": "normal",
+    "last_name": "user",
+    "email": "normal@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-02-27T14:04:00.698Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 8,
+  "fields": {
+    "password": "pbkdf2_sha256$870000$MrSfmVXyZ2MlK4dwoTZmak$3QVGMqy17sxPt6xSLF3NZXa/yXXDVwdvdlZAbJKmYvg=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "delete",
+    "first_name": "delete",
+    "last_name": "this",
+    "email": "ejsfn@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-02-27T14:06:50.769Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 9,
+  "fields": {
+    "password": "pbkdf2_sha256$870000$Xwc8IGaY96j6NuvIoW0Sjk$Ev2/cbPN51pnCkoQzQYjm5nqHxzDC1baYe4oxqsR+0M=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "delete2",
+    "first_name": "delete",
+    "last_name": "this",
+    "email": "ejsfn@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-02-27T14:07:43.101Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "8ylqqsjh9vtmduepac7z9qgwozhd4xsp",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGln-rWNT0ucM1q4_OIAcKU4qxN2RpRTQvpl5bxbw2Gs4et7CktiVKXb53QjjM7cB0gPbfeVxbfu2EB8KP2nn85ry63a6fwcVex21Ia_ARStRF2ug5KIsSSDthNBWWDRagSyJhJ0ogQE3JYpaeQ8iQ2GfL88RN0E:1tprN4:i665KK91AcgtsNRSiUiVuyUqhoMwK8lZRJiuDbvwu8s",
+    "expire_date": "2025-03-19T16:13:22.864Z"
+  }
+},
+{
+  "model": "MyApp.profile",
+  "pk": 1,
+  "fields": {
+    "user": 1,
+    "user_type": "user",
+    "preferences": [
+      "Action",
+      "Racing"
+    ]
+  }
+},
+{
+  "model": "MyApp.profile",
+  "pk": 3,
+  "fields": {
+    "user": 4,
+    "user_type": "user",
+    "preferences": [
+      "Action",
+      "Racing"
+    ]
+  }
+},
+{
+  "model": "MyApp.profile",
+  "pk": 4,
+  "fields": {
+    "user": 6,
+    "user_type": "developer",
+    "preferences": [
+      "Action"
+    ]
+  }
+},
+{
+  "model": "MyApp.profile",
+  "pk": 5,
+  "fields": {
+    "user": 7,
+    "user_type": "user",
+    "preferences": [
+      "Action",
+      "Adventure"
+    ]
+  }
+},
+{
+  "model": "MyApp.profile",
+  "pk": 6,
+  "fields": {
+    "user": 8,
+    "user_type": "user",
+    "preferences": [
+      "Sports"
+    ]
+  }
+},
+{
+  "model": "MyApp.profile",
+  "pk": 7,
+  "fields": {
+    "user": 9,
+    "user_type": "user",
+    "preferences": [
+      "Adventure"
+    ]
+  }
+},
+{
+  "model": "MyApp.game",
+  "pk": 5,
+  "fields": {
+    "title": "Shadow Strikers",
+    "description": "An action-packed ninja adventure.",
+    "category": "Action",
+    "developer": 5,
+    "image_url": ""
+  }
+},
+{
+  "model": "MyApp.game",
+  "pk": 6,
+  "fields": {
+    "title": "Blade Fury",
+    "description": "A fast-paced sword-fighting game.",
+    "category": "Action",
+    "developer": 5,
+    "image_url": ""
+  }
+},
+{
+  "model": "MyApp.game",
+  "pk": 7,
+  "fields": {
+    "title": "Quest Chronicles",
+    "description": "An epic fantasy adventure.",
+    "category": "Adventure",
+    "developer": 5,
+    "image_url": ""
+  }
+},
+{
+  "model": "MyApp.game",
+  "pk": 8,
+  "fields": {
+    "title": "Mystic Escape",
+    "description": "Solve mysteries and escape magical realms.",
+    "category": "Adventure",
+    "developer": 5,
+    "image_url": ""
+  }
+},
+{
+  "model": "MyApp.game",
+  "pk": 9,
+  "fields": {
+    "title": "Speed Thrills",
+    "description": "High-speed racing action.",
+    "category": "Racing",
+    "developer": 5,
+    "image_url": ""
+  }
+},
+{
+  "model": "MyApp.game",
+  "pk": 10,
+  "fields": {
+    "title": "Highway Madness",
+    "description": "Race through chaotic highways.",
+    "category": "Racing",
+    "developer": 5,
+    "image_url": ""
+  }
+},
+{
+  "model": "MyApp.game",
+  "pk": 11,
+  "fields": {
+    "title": "Pro Soccer 2024",
+    "description": "Realistic soccer simulation.",
+    "category": "Sports",
+    "developer": 5,
+    "image_url": ""
+  }
+},
+{
+  "model": "MyApp.game",
+  "pk": 12,
+  "fields": {
+    "title": "Hoop Heroes",
+    "description": "Basketball action with style.",
+    "category": "Sports",
+    "developer": 5,
+    "image_url": ""
+  }
+},
+{
+  "model": "MyApp.game",
+  "pk": 13,
+  "fields": {
+    "title": "My Game",
+    "description": "game only for testing",
+    "category": "Racing",
+    "developer": 6,
+    "image_url": "https://th.bing.com/th/id/OIP.LSzKZJ01eykwML_srdCW9gHaHa?w=167&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7"
+  }
+},
+{
+  "model": "MyApp.game",
+  "pk": 14,
+  "fields": {
+    "title": "2 for My Game",
+    "description": "my game 2 checking",
+    "category": "Sports",
+    "developer": 6,
+    "image_url": "https://th.bing.com/th/id/OIP.LSzKZJ01eykwML_srdCW9gHaHa?w=167&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7"
+  }
+},
+{
+  "model": "MyApp.game",
+  "pk": 15,
+  "fields": {
+    "title": "game",
+    "description": "hello",
+    "category": "Adventure",
+    "developer": 6,
+    "image_url": ""
+  }
+},
+{
+  "model": "MyApp.review",
+  "pk": 2,
+  "fields": {
+    "game": 6,
+    "user": 6,
+    "rating": 4,
+    "comment": "nice but not very nice",
+    "created_at": "2025-03-02T13:40:23.430Z"
+  }
+},
+{
+  "model": "MyApp.review",
+  "pk": 4,
+  "fields": {
+    "game": 6,
+    "user": 7,
+    "rating": 1,
+    "comment": "very bed",
+    "created_at": "2025-03-02T13:54:24.416Z"
+  }
+},
+{
+  "model": "MyApp.review",
+  "pk": 5,
+  "fields": {
+    "game": 13,
+    "user": 7,
+    "rating": 5,
+    "comment": "wow!",
+    "created_at": "2025-03-02T13:57:03.040Z"
+  }
+},
+{
+  "model": "MyApp.review",
+  "pk": 6,
+  "fields": {
+    "game": 13,
+    "user": 2,
+    "rating": 4,
+    "comment": "mm",
+    "created_at": "2025-03-03T16:26:47.151Z"
+  }
+},
+{
+  "model": "MyApp.review",
+  "pk": 7,
+  "fields": {
+    "game": 5,
+    "user": 2,
+    "rating": 5,
+    "comment": "best",
+    "created_at": "2025-03-03T17:04:36.909Z"
+  }
+},
+{
+  "model": "MyApp.review",
+  "pk": 8,
+  "fields": {
+    "game": 5,
+    "user": 2,
+    "rating": 1,
+    "comment": "very bad",
+    "created_at": "2025-03-03T17:04:54.866Z"
+  }
+},
+{
+  "model": "MyApp.gameanalytics",
+  "pk": 1,
+  "fields": {
+    "game": 5,
+    "total_downloads": 2100000,
+    "system_requirements": "4GB RAM, 2GHz CPU",
+    "size": "850MB",
+    "last_updated": "2025-02-25T13:02:44.974Z"
+  }
+},
+{
+  "model": "MyApp.gameanalytics",
+  "pk": 2,
+  "fields": {
+    "game": 6,
+    "total_downloads": 1800000,
+    "system_requirements": "8GB RAM, 3GHz CPU",
+    "size": "1.2GB",
+    "last_updated": "2025-02-25T13:02:45.003Z"
+  }
+},
+{
+  "model": "MyApp.gameanalytics",
+  "pk": 3,
+  "fields": {
+    "game": 7,
+    "total_downloads": 900000,
+    "system_requirements": "2GB RAM, 1.5GHz CPU",
+    "size": "650MB",
+    "last_updated": "2025-02-25T13:02:45.008Z"
+  }
+},
+{
+  "model": "MyApp.gameanalytics",
+  "pk": 4,
+  "fields": {
+    "game": 8,
+    "total_downloads": 1500000,
+    "system_requirements": "6GB RAM, 2.5GHz CPU",
+    "size": "1GB",
+    "last_updated": "2025-02-25T13:02:45.014Z"
+  }
+},
+{
+  "model": "MyApp.gameanalytics",
+  "pk": 5,
+  "fields": {
+    "game": 9,
+    "total_downloads": 2300000,
+    "system_requirements": "4GB RAM, 2.5GHz CPU",
+    "size": "900MB",
+    "last_updated": "2025-02-25T13:02:45.020Z"
+  }
+},
+{
+  "model": "MyApp.gameanalytics",
+  "pk": 6,
+  "fields": {
+    "game": 10,
+    "total_downloads": 1900000,
+    "system_requirements": "8GB RAM, 3GHz CPU",
+    "size": "1.3GB",
+    "last_updated": "2025-02-25T13:02:45.025Z"
+  }
+},
+{
+  "model": "MyApp.gameanalytics",
+  "pk": 7,
+  "fields": {
+    "game": 11,
+    "total_downloads": 3500000,
+    "system_requirements": "8GB RAM, 3.5GHz CPU",
+    "size": "1.4GB",
+    "last_updated": "2025-02-25T13:02:45.032Z"
+  }
+},
+{
+  "model": "MyApp.gameanalytics",
+  "pk": 8,
+  "fields": {
+    "game": 12,
+    "total_downloads": 1200000,
+    "system_requirements": "4GB RAM, 2GHz CPU",
+    "size": "950MB",
+    "last_updated": "2025-02-25T13:02:45.036Z"
+  }
+},
+{
+  "model": "MyApp.gameanalytics",
+  "pk": 9,
+  "fields": {
+    "game": 13,
+    "total_downloads": 0,
+    "system_requirements": "Octra core minimum and i5 and 5GB Ram",
+    "size": "602MB",
+    "last_updated": "2025-02-27T13:45:47.194Z"
+  }
+},
+{
+  "model": "MyApp.gameanalytics",
+  "pk": 10,
+  "fields": {
+    "game": 14,
+    "total_downloads": 393832,
+    "system_requirements": "no requirement as special",
+    "size": "602MB",
+    "last_updated": "2025-02-27T13:51:50.521Z"
+  }
+},
+{
+  "model": "MyApp.gameanalytics",
+  "pk": 11,
+  "fields": {
+    "game": 15,
+    "total_downloads": 83329,
+    "system_requirements": "no",
+    "size": "1MB",
+    "last_updated": "2025-02-27T14:01:24.450Z"
+  }
+}
+]
