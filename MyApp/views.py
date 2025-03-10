@@ -12,12 +12,14 @@ from .models import Review
 
 from django.shortcuts import render, redirect
 from .forms import UserSignupForm, ProfileForm
+from django.core.exceptions import PermissionDenied
+
 
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from .forms import UserSignupForm, ProfileForm
 from .models import Game,GameAnalytics
-from .forms import GameForm, GameAnalyticsForm
+from .forms import GameForm, GameAnalyticsForm,GameUpdateForm
 from .forms import ReviewForm
 
 
@@ -54,7 +56,7 @@ def login_view(request):
             user = form.get_user()
             login(request, user)
             messages.success(request, f"Welcome back, {user.username}!")
-            return redirect('home')  # Assuming 'home' is the name of your home page URL
+            return redirect('home') 
         else:
             messages.error(request, "Invalid username or password")
     else:
@@ -198,39 +200,42 @@ def my_games(request):
     if not request.user.profile.is_developer():
         return redirect('home')
     games = Game.objects.filter(developer=request.user)
-    return render(request, 'myapp/my_games.html', {'games': games})
+    return render(request, 'games/my_games.html', {'games': games})
     
 @login_required
-def update_game(request, game_id):
-    game = get_object_or_404(Game, id=game_id)
+def update_game(request, pk):
+    game = get_object_or_404(Game, pk=pk)
+    analytics = get_object_or_404(GameAnalytics, game=game)
 
-    # Make sure only the game's developer can update it
     if request.user != game.developer:
         raise PermissionDenied()
-
-    # Get the related analytics or create if missing
-    analytics, created = GameAnalytics.objects.get_or_create(game=game)
 
     if request.method == 'POST':
         form = GameUpdateForm(request.POST, instance=game)
         if form.is_valid():
             game = form.save()
 
-            # Update size in GameAnalytics
-            analytics.size = form.cleaned_data['size']
+            # Also update the total_downloads in GameAnalytics
+            analytics.total_downloads = form.cleaned_data['total_downloads']
             analytics.save()
 
-            return redirect('game_detail', game_id=game.id)
+            return redirect('my_games')  # Or wherever you want to redirect after update
     else:
-        # Pre-fill size from GameAnalytics
-        form = GameUpdateForm(instance=game, initial={'size': analytics.size})
+        # Populate the form including size and total_downloads
+        form = GameUpdateForm(instance=game, initial={'size': analytics.size, 'total_downloads': analytics.total_downloads})
 
     return render(request, 'games/update_game.html', {'form': form, 'game': game})
 
 @login_required
-def delete_game(request, game_id):
-    game = get_object_or_404(Game, id=game_id, developer=request.user)
+def delete_game(request, pk):
+    game = get_object_or_404(Game, pk=pk)
+
+    if request.user != game.developer:
+        raise PermissionDenied()
+
     if request.method == 'POST':
         game.delete()
-        return redirect('my_games')
-    return render(request, 'myapp/delete_game.html', {'game': game})
+        return redirect('my_games')  # Adjust this if your redirect URL is different
+
+    return render(request, 'games/delete_game.html', {'game': game})
+  

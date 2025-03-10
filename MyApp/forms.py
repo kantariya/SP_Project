@@ -67,44 +67,30 @@ class GameAnalyticsForm(forms.ModelForm):
         model = GameAnalytics
         fields = ['total_downloads', 'system_requirements']
 
-# Custom Admin Form for game validation
-from django.contrib import admin
 
-class GameAdminForm(forms.ModelForm):
+class GameUpdateForm(forms.ModelForm):
+    category = forms.ChoiceField(choices=CATEGORY_CHOICES, widget=forms.Select())
+    size = forms.CharField(required=True, widget=forms.TextInput(attrs={'placeholder': 'Enter size like 2GB or 500MB'}))
+    total_downloads = forms.IntegerField(required=True)
+
     class Meta:
         model = Game
         fields = ['title', 'description', 'category', 'image_url']
 
-    def clean_title(self):
-        title = self.cleaned_data['title']
-        if Game.objects.filter(title=title).exists():
-            raise forms.ValidationError('This game already exists.')
-        return title
-
-class GameAdmin(admin.ModelAdmin):
-    form = GameAdminForm
-    list_display = ('title', 'developer', 'category', 'image_url')
-
-class GameUpdateForm(GameForm):
     def __init__(self, *args, **kwargs):
-        game = kwargs.get('instance')
-        if game:
-            try:
-                game_analytics = GameAnalytics.objects.get(game=game)
-                initial_size = game_analytics.size
-            except GameAnalytics.DoesNotExist:
-                initial_size = ''
-            if 'initial' not in kwargs:
-                kwargs['initial'] = {}
-            kwargs['initial']['size'] = initial_size
-        super().__init__(*args, **kwargs)
+        super(GameUpdateForm, self).__init__(*args, **kwargs)
+        if self.instance and hasattr(self.instance, 'gameanalytics'):
+            analytics = GameAnalytics.objects.filter(game=self.instance).first()
+            if analytics:
+                self.fields['size'].initial = analytics.size
+                self.fields['total_downloads'].initial = analytics.total_downloads
 
     def save(self, commit=True):
-        game = super().save(commit=commit)
-        size = self.cleaned_data.get('size')
-
-        game_analytics, created = GameAnalytics.objects.get_or_create(game=game)
-        game_analytics.size = size
+        game = super(GameUpdateForm, self).save(commit=False)
         if commit:
+            game.save()
+            game_analytics, _ = GameAnalytics.objects.get_or_create(game=game)
+            game_analytics.size = self.cleaned_data['size']
+            game_analytics.total_downloads = self.cleaned_data['total_downloads']
             game_analytics.save()
         return game
